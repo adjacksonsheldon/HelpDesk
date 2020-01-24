@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.sheldon.helpdesk.api.entity.User;
 import com.sheldon.helpdesk.api.enums.ProfileEnum;
@@ -18,25 +19,23 @@ public class HelpDeskApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(UserService userService) {
+	CommandLineRunner init(UserService userService, PasswordEncoder passwordEncoder) {
 		return args -> {
-			initUsers(userService);
+			initUsers(userService, passwordEncoder);
 		};
 	}
 
-	private void initUsers(UserService userService) {
+	private void initUsers(UserService userService, PasswordEncoder passwordEncoder) {
 
-		Page<User> users = userService.findAll(1, 10);
-		
-		System.out.println(users);
+//		this.addUser(userService, passwordEncoder);		
 	}
 	
 	
-	private void addUser(UserService userService) {
+	private void addUser(UserService userService, PasswordEncoder passwordEncoder) {
 		
 		User admin = new User();
-		admin.setEmail("custumer@helpdesk.com");
-		admin.setPassword("123456");
+		admin.setEmail("admin@helpdesk.com");
+		admin.setPassword(passwordEncoder.encode("123456"));
 		admin.setProfile(ProfileEnum.ROLE_CUSTOMER);
 		
 		userService.createOrUpdate(admin);
