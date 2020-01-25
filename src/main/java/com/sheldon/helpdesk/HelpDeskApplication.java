@@ -27,11 +27,11 @@ public class HelpDeskApplication {
 
 	private void initUsers(UserService userService, PasswordEncoder passwordEncoder) {
 
-//		this.addUser(userService, passwordEncoder);		
+		//this.addAdminUser(userService, passwordEncoder);		
 	}
 	
 	
-	private void addUser(UserService userService, PasswordEncoder passwordEncoder) {
+	private void addAdminUser(UserService userService, PasswordEncoder passwordEncoder) {
 		
 		User admin = new User();
 		admin.setEmail("admin@helpdesk.com");
