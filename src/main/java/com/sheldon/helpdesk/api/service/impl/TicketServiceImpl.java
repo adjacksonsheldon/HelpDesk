@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sheldon.helpdesk.api.entity.ChangeStatus;
 import com.sheldon.helpdesk.api.entity.Ticket;
+import com.sheldon.helpdesk.api.repository.ChangeStatusRepository;
 import com.sheldon.helpdesk.api.repository.TicketRepository;
 import com.sheldon.helpdesk.api.service.TicketService;
 
@@ -15,6 +16,9 @@ public class TicketServiceImpl implements TicketService{
 
 	@Autowired
 	TicketRepository ticketRepository;
+	
+	@Autowired
+	ChangeStatusRepository changeStatusRepository;
 	
 	@Override
 	public Ticket createOrUpdate(Ticket pTicket) {
@@ -40,13 +44,11 @@ public class TicketServiceImpl implements TicketService{
 
 	@Override
 	public ChangeStatus createChangeStatus(ChangeStatus pChangeStatus) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.changeStatusRepository.save(pChangeStatus);
 	}
 
 	@Override
 	public Iterable<ChangeStatus> listChangeStatus(Long id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
