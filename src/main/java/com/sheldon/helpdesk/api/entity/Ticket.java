@@ -1,17 +1,36 @@
 package com.sheldon.helpdesk.api.entity;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.sheldon.helpdesk.api.enums.PriorityEnum;
 import com.sheldon.helpdesk.api.enums.StatusEnum;
 
+@Entity
+public class Ticket implements Serializable {
 
-public class Ticket {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
 	private Date date;
@@ -24,15 +43,39 @@ public class Ticket {
 	
 	private PriorityEnum priority;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "assigned_user_id", referencedColumnName = "id")
 	private User assignedUser;
 	
 	private String description;
 	
 	private String image;
 	
-	private List<ChangeStatus> changes;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name = "ticket_id")
+	private List<ChangeStatus> changes;	
 
-	public String getId() {
+	public Ticket(Long id, User user, Date date, String title, Integer number, StatusEnum status, PriorityEnum priority,
+			User assignedUser, String description, String image, List<ChangeStatus> changes) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.date = date;
+		this.title = title;
+		this.number = number;
+		this.status = status;
+		this.priority = priority;
+		this.assignedUser = assignedUser;
+		this.description = description;
+		this.image = image;
+		this.changes = changes;
+	}
+
+	public Ticket() {
+		super();
+	}
+
+	public Long getId() {
 		return id;
 	}
 
@@ -76,7 +119,7 @@ public class Ticket {
 		return changes;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
