@@ -28,7 +28,7 @@ public class ChangeStatus {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User userChange;
 	
-	private Date dataChangeStatus;
+	private Date dateChangeStatus;
 	
 	private StatusEnum status;
 
@@ -44,8 +44,8 @@ public class ChangeStatus {
 		return userChange;
 	}
 
-	public Date getDataChangeStatus() {
-		return dataChangeStatus;
+	public Date getDateChangeStatus() {
+		return dateChangeStatus;
 	}
 
 	public StatusEnum getStatus() {
@@ -64,8 +64,8 @@ public class ChangeStatus {
 		this.userChange = userChange;
 	}
 
-	public void setDataChangeStatus(Date dataChangeStatus) {
-		this.dataChangeStatus = dataChangeStatus;
+	public void setDateChangeStatus(Date dateChangeStatus) {
+		this.dateChangeStatus = dateChangeStatus;
 	}
 
 	public void setStatus(StatusEnum status) {

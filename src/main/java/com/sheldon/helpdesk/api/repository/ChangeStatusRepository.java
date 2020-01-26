@@ -6,4 +6,6 @@ import com.sheldon.helpdesk.api.entity.ChangeStatus;
 
 public interface ChangeStatusRepository extends JpaRepository<ChangeStatus, Long> {
 
+	Iterable<ChangeStatus> findByTicketIdOrderByDateChangeStatus(Long ticketId);
+	
 }

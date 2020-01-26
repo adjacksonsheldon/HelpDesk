@@ -49,45 +49,42 @@ public class TicketServiceImpl implements TicketService{
 
 	@Override
 	public Iterable<ChangeStatus> listChangeStatus(Long id) {
-		return null;
+		return this.changeStatusRepository.findByTicketIdOrderByDateChangeStatus(id);
 	}
 
 	@Override
 	public Page<Ticket> findByCurrentUser(int page, int count, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.ticketRepository.findByUserIdOrderByDateDesc(PageRequest.of(page, count), userId);
 	}
 
 	@Override
 	public Page<Ticket> findByParameters(int page, int count, String title, String status, String priority) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.ticketRepository.findByTitleIgnoreCaseContainingAndStatusAndPriorityOrderByDateDesc
+				(title, status, priority, PageRequest.of(page, count));
 	}
 
 	@Override
 	public Page<Ticket> findByParametersAndUser(int page, int count, String title, String status, String priority,
 			String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.ticketRepository.findByTitleIgnoreCaseContainingAndStatusAndPriorityAndUserIdOrderByDateDesc
+				(title, status, priority, userId, PageRequest.of(page, count));
 	}
 
 	@Override
 	public Page<Ticket> findByNumber(int page, int count, Integer number) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.ticketRepository.findByNumber(number, PageRequest.of(page, count));
 	}
 
 	@Override
 	public Iterable<Ticket> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.ticketRepository.findAll();
 	}
 
 	@Override
 	public Page<Ticket> findByParametersAndAssignedUser(int page, int count, String title, String status,
-			String priority, String assignedId) {
-		// TODO Auto-generated method stub
-		return null;
+			String priority, String assignedUserId) {
+		return this.ticketRepository.findByTitleIgnoreCaseContainingAndStatusAndPriorityAndAssignedUserOrderByDateDesc
+				(title, status, priority, assignedUserId, PageRequest.of(page, count));
 	}
 
 }
