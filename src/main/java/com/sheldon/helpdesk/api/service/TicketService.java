@@ -18,15 +18,15 @@ public interface TicketService {
 	
 	Iterable<ChangeStatus> listChangeStatus(Long id);
 	
-	Page<Ticket> findByCurrentUser(int page, int count, String userId);
+	Page<Ticket> findByCurrentUser(int page, int count, Long userId);
 	
 	Page<Ticket> findByParameters(int page, int count, String title, String status, String priority);
 	
-	Page<Ticket> findByParametersAndUser(int page, int count, String title, String status, String priority, String userId);
+	Page<Ticket> findByParametersAndUser(int page, int count, String title, String status, String priority, Long userId);
 	
 	Page<Ticket> findByNumber(int page, int count, Integer number);
 	
 	Iterable<Ticket> findAll();
 	
-	Page<Ticket> findByParametersAndAssignedUser(int page, int count, String title, String status, String priority, String assignedUserId);
+	Page<Ticket> findByParametersAndAssignedUser(int page, int count, String title, String status, String priority, Long assignedUserId);
 }
