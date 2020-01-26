@@ -1,5 +1,6 @@
 package com.sheldon.helpdesk.api.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -15,11 +16,16 @@ import javax.persistence.OneToOne;
 import com.sheldon.helpdesk.api.enums.StatusEnum;
 
 @Entity
-public class ChangeStatus {
+public class ChangeStatus implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private Long id;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "ticket_id", referencedColumnName = "id")
@@ -32,7 +38,7 @@ public class ChangeStatus {
 	
 	private StatusEnum status;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -52,7 +58,7 @@ public class ChangeStatus {
 		return status;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

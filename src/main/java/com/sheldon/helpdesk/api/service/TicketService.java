@@ -22,7 +22,7 @@ public interface TicketService {
 	
 	Page<Ticket> findByParameters(int page, int count, String title, String status, String priority);
 	
-	Page<Ticket> findByParametersAndUser(int page, int count, String title, String status, String priority, Long userId);
+	Page<Ticket> findByParametersAndCurrentUser(int page, int count, String title, String status, String priority, Long userId);
 	
 	Page<Ticket> findByNumber(int page, int count, Integer number);
 	
